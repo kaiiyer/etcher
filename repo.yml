@@ -1,0 +1,9 @@
+type: electron
+release: github
+publishMetadata: true
+sentry:
+    org: balenaetcher
+    team: resinio
+    type: electron
+triggerNotification:
+    version: 1.5.52

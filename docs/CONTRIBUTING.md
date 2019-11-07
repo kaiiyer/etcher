@@ -17,10 +17,11 @@ Developing
 
 #### Common
 
-- [NodeJS](https://nodejs.org) (at least v6)
+- [NodeJS](https://nodejs.org) (at least v6.11)
 - [Python 2.7](https://www.python.org)
 - [jq](https://stedolan.github.io/jq/)
 - [curl](https://curl.haxx.se/)
+- [npm](https://www.npmjs.com/) (version 6.7)
 
 ```sh
 pip install -r requirements.txt
@@ -51,10 +52,12 @@ The following MinGW packages are required:
 - `msys-bash`
 - `msys-coreutils`
 
-#### OS X
+#### macOS
 
-- [XCode](https://developer.apple.com/xcode/) or [XCode Command Line Tools],
-which can be installed by running `xcode-select --install`.
+- [Xcode](https://developer.apple.com/xcode/)
+
+It's not enough to have [Xcode Command Line Tools] installed. Xcode must be installed
+as well.
 
 #### Linux
 
@@ -63,7 +66,7 @@ which can be installed by running `xcode-select --install`.
 ### Cloning the project
 
 ```sh
-git clone https://github.com/balena-io/etcher
+git clone --recursive https://github.com/balena-io/etcher
 cd etcher
 ```
 
@@ -91,12 +94,6 @@ make electron-develop
 make webpack
 # Start Electron
 npm start
-```
-
-#### CLI
-
-```sh
-node bin/etcher
 ```
 
 Testing
@@ -218,4 +215,4 @@ Don't hesitate to get in touch if you have any questions or need any help!
 [EditorConfig]: http://editorconfig.org
 [shrinkwrap]: https://docs.npmjs.com/cli/shrinkwrap
 [hxd]: https://github.com/jhermsmeier/hxd
-[XCode Command Line Tools]: https://developer.apple.com/library/content/technotes/tn2339/_index.html
+[Xcode Command Line Tools]: https://developer.apple.com/library/content/technotes/tn2339/_index.html

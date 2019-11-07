@@ -30,7 +30,7 @@ if you require this functionality, we advise to fallback to
 Deactivate desktop shortcut prompt on GNU/Linux
 -----------------------------------------------
 
-This is a feature provided by [AppImages](appimage), where the applications
+This is a feature provided by [AppImages][appimage], where the applications
 prompts the user to automatically register a desktop shortcut to easily access
 the application.
 
@@ -130,21 +130,6 @@ run Etcher on a GNU/Linux system.
 
 - liblzma (for xz decompression)
 
-Simulate an update alert
-------------------------
-
-You can set the `ETCHER_FAKE_S3_LATEST_VERSION` environment variable to a valid
-semver version (greater than the current version) to trick the application into
-thinking that what you put there is the latest available version, therefore
-causing the update notification dialog to be presented at startup.
-
-Note that the value of the variable will be ignored if it doesn't match the
-release type of the current application version. For example, setting the
-variable to a production version (e.g. `ETCHER_FAKE_S3_LATEST_VERSION=2.0.0`)
-will be ignored if you're running a snapshot build, and vice-versa.
-
-See [`PUBLISHING.md`][publishing] for more details about release types.
-
 Recovering broken drives
 ------------------------
 
@@ -206,19 +191,15 @@ Running in older macOS versions
 -------------------------------
 
 Etcher GUI is based on the [Electron][electron] framework, [which only supports
-macOS 10.9 and newer versions][electron-supported-platforms].
-
-You can however, run the [Etcher CLI][etcher-cli], which should work in older
-platforms.
+macOS 10.10 (Yosemite) and newer versions][electron-supported-platforms].
 
 [balena.io]: https://balena.io
 [appimage]: http://appimage.org
 [xwayland]: https://wayland.freedesktop.org/xserver.html
 [weston.ini]: http://manpages.ubuntu.com/manpages/wily/man5/weston.ini.5.html
 [diskpart]: https://technet.microsoft.com/en-us/library/cc770877(v=ws.11).aspx
-[electron]: http://electron.atom.io
-[electron-supported-platforms]: https://github.com/electron/electron/blob/master/docs/tutorial/supported-platforms.md
-[etcher-cli]: https://github.com/balena-io/etcher/blob/master/docs/CLI.md
+[electron]: https://electronjs.org/
+[electron-supported-platforms]: https://electronjs.org/docs/tutorial/support#supported-platforms
 [publishing]: https://github.com/balena-io/etcher/blob/master/docs/PUBLISHING.md
 [windows-usb-tool]: https://www.microsoft.com/en-us/download/windows-usb-dvd-download-tool
 [rufus]: https://rufus.akeo.ie

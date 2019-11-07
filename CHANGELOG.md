@@ -3,6 +3,362 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v1.5.62
+## (2019-11-06)
+
+* Update drivelist to 8.0.9 [Alexis Svinartchouk]
+
+# v1.5.61
+## (2019-11-05)
+
+* Notarize app on macOS [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.60
+## (2019-10-18)
+
+* Upgrade ext2fs to 1.0.30 [Matthew McGinn]
+
+# v1.5.59
+## (2019-10-14)
+
+* Catch console log messages from SafeWebView [Roman Mazur]
+
+# v1.5.58
+## (2019-10-10)
+
+* Remove leftover GH-pages configuration file [Dimitrios Lytras]
+
+# v1.5.57
+## (2019-09-16)
+
+* Fix entrypoint when options are passed to electron [Alexis Svinartchouk]
+
+# v1.5.56
+## (2019-08-20)
+
+* Fix windows portable download [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.55
+## (2019-08-19)
+
+* Update etcher-sdk to ^2.0.13 [Alexis Svinartchouk]
+
+# v1.5.54
+## (2019-08-07)
+
+* Fix auto-updater check for updates [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.53
+## (2019-08-06)
+
+* Allow typescript files [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.52
+## (2019-07-22)
+
+* Don't use wmic's ProviderName if it's empty [Alexis Svinartchouk]
+
+# v1.5.51
+## (2019-06-28)
+
+* Update sudo-prompt to ^9.0.0 [Alexis Svinartchouk]
+
+# v1.5.50
+## (2019-06-13)
+
+* Option for trimming ext partitions on raw images [Alexis Svinartchouk]
+
+# v1.5.49
+## (2019-06-13)
+
+* Make window size configurable [Alexis Svinartchouk]
+
+# v1.5.48
+## (2019-06-13)
+
+* Don't use sudo-prompt when already elevated [Alexis Svinartchouk]
+
+# v1.5.47
+## (2019-06-10)
+
+* Rework drive-selector with react + rendition [Lorenzo Alberto Maria Ambrosi]
+* Use rendition theme property for step buttons [Lorenzo Alberto Maria Ambrosi]
+* Upgrade styled-system to v4.1.0 [Lorenzo Alberto Maria Ambrosi]
+* Upgrade rendition to v8.7.2 [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.46
+## (2019-06-09)
+
+* Update ext2fs to 1.0.29 [Alexis Svinartchouk]
+
+# v1.5.45
+## (2019-06-04)
+
+* Empty commit to trigger build [Alexis Svinartchouk]
+
+# v1.5.44
+## (2019-06-03)
+
+* Fix elevation on windows when the path contains "&" or "'" [Alexis Svinartchouk]
+
+# v1.5.43
+## (2019-05-28)
+
+* Revert "Include sass in webpack configs" [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.42
+## (2019-05-28)
+
+* Include sass in webpack configs [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.41
+## (2019-05-27)
+
+* waffle.io removal and adding a link to the license [Mateusz Hajder]
+
+# v1.5.40
+## (2019-05-24)
+
+* windows installer and portable version support both ia32 and x64 [Alexis Svinartchouk]
+
+# v1.5.39
+## (2019-05-14)
+
+* Add clean-shrinkwrap script to postshrinkwrap step [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.38
+## (2019-05-13)
+
+* Add mention to usbboot compatibility [Carlo Maria Curinga]
+
+# v1.5.37
+## (2019-05-13)
+
+* Bump react dependency to v16.8.5 [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.36
+## (2019-05-13)
+
+* Update etcher-sdk to ^2.0.9 [Alexis Svinartchouk]
+
+# v1.5.35
+## (2019-05-10)
+
+* Downgrade electron 4.1.5 -> 3.1.9 [Alexis Svinartchouk]
+
+# v1.5.34
+## (2019-05-09)
+
+* Use https url for fetching config, avoid redirection [Alexis Svinartchouk]
+* win32: fix running diskpart when the tmp file path contains spaces [Alexis Svinartchouk]
+
+# v1.5.33
+## (2019-04-30)
+
+* Fix gzipped files verification percentage and dmg verification. [Alexis Svinartchouk]
+
+# v1.5.32
+## (2019-04-30)
+
+* Export NPM_VERSION variable in Makefile [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.31
+## (2019-04-29)
+
+* Update etcher-sdk to ^2.0.3 [Alexis Svinartchouk]
+* Update electron to 4.1.5 [Alexis Svinartchouk]
+
+# v1.5.30
+## (2019-04-24)
+
+* Don't show a dialog when the write fails. [Alexis Svinartchouk]
+
+# v1.5.29
+## (2019-04-19)
+
+* Add support for auto-updating feature [Giovanni Garufi]
+
+# v1.5.28
+## (2019-04-18)
+
+* Update electron-builder to ^20.40.2 [Alexis Svinartchouk]
+* Update etcher-sdk to ^2.0.1 [Alexis Svinartchouk]
+
+# v1.5.27
+## (2019-04-16)
+
+* (Windows): Fix reading images from network drives when the tmp dir has spaces [Alexis Svinartchouk]
+
+# v1.5.26
+## (2019-04-12)
+
+* (Windows): Fix reading images from network drives containing non ascii characters [Alexis Svinartchouk]
+
+# v1.5.25
+## (2019-04-09)
+
+* New parameter in webview for opt-out analytics [Lorenzo Alberto Maria Ambrosi]
+
+# v1.5.24
+## (2019-04-05)
+
+* Update resin-corvus to ^2.0.3 [Alexis Svinartchouk]
+
+# v1.5.23
+## (2019-04-03)
+
+* Configure versionbot to publish repo metadata to github pages [Giovanni Garufi]
+
+# v1.5.22
+## (2019-04-02)
+
+* (Windows): Use full path to wmic as some systems don't have it in their PATH [Alexis Svinartchouk]
+
+# v1.5.21
+## (2019-04-02)
+
+* Fix error when config.analytics was undefined [Alexis Svinartchouk]
+
+# v1.5.20
+## (2019-04-01)
+
+* Don't try to flash when no device is selected [Alexis Svinartchouk]
+* Reformat changelog [Giovanni Garufi]
+* Avoid "Error: There is already a flash in progress" errors [Alexis Svinartchouk]
+
+# v1.5.19
+## (2019-03-28)
+
+* Update resin-corvus to ^2.0.2 [Alexis Svinartchouk]
+* Better reporting of unhandled rejections to sentry [Alexis Svinartchouk]
+
+# v1.5.18
+## (2019-03-26)
+
+* Update build scripts [Giovanni Garufi]
+
+## v1.5.17 - 2019-03-25
+
+### Misc
+
+- Automatically publish github release from CI
+
+## v1.5.16 - 2019-03-25
+
+### Misc
+
+- Add repo.yml
+
+## v1.5.15 - 2019-03-20
+
+### Misc
+
+- Show the correct logo on usbboot devices on Ubuntu
+
+## v1.5.14 - 2019-03-20
+
+### Misc
+
+- Update etcher-sdk to ^1.3.10
+
+## v1.5.13 - 2019-03-18
+
+### Misc
+
+- Update build scripts
+
+## v1.5.12 - 2019-03-15
+
+### Misc
+
+- Update build scripts
+
+## v1.5.11 - 2019-03-12
+
+### Misc
+
+- Fixed broken Hombrew cask link for etcher
+- Remove no longer used travis and appveyor configs
+
+## v1.5.10 - 2019-03-12
+
+### Misc
+
+- Update resin-scripts
+
+## v1.5.9 - 2019-03-05
+
+### Misc
+
+- Update etcher-sdk to 1.3.0
+
+## v1.5.8 - 2019-03-01
+
+### Misc
+
+- Update ext2fs to 1.0.27
+
+## v1.5.7 - 2019-03-01
+
+### Fixes
+
+- Update docs
+- Fix disappearing modal window
+
+### Misc
+
+- Fix blurred background image
+
+## v1.5.6 - 2019-02-28
+
+### Misc
+
+- Target electron 3 runtime in babel options
+
+## v1.5.5 - 2019-02-28
+
+### Misc
+
+- Don't pass undefined sockets to ipc.server.emit()
+- Fix error when event.dataTransfer.files is empty
+- Fix error message not showing when an unsupported image is selected
+- Avoid `Invalid percentage` exceptions
+- Update etcher-sdk to 1.1.0
+
+## v1.5.4 - 2019-02-27
+
+### Misc
+
+- Add missing step for submodule cloning in README
+
+## v1.5.3 - 2019-02-27
+
+### Misc
+
+- Throw error if no commit is annotated with a changelog entry
+
+## v1.5.2 - 2019-02-26
+
+- Enable versionist editVersion
+
+## v1.5.1 - 2019-02-22
+
+### Misc
+
+- Removed lodash dependency in versionist.conf.js
+
+## v1.5.0 - 2019-02-16
+
+### Misc
+
+- Reworked flashing logic with etcher-sdk
+- Add support for flashing Raspberry Pi CM3+
+- Upgrade to Electron v3.
+- Upgrade to NPM 6.7.0
+- Fix incorrect drives list on Linux
+- Changed “Drive Contains Image” to “Drive Mountpoint Contains Image”
+- Removed etcher-cli
+
 ## v1.4.9 - 2018-12-19
 
 ### Fixes

@@ -3,6 +3,7 @@
 # ---------------------------------------------------------------------
 
 RESIN_SCRIPTS ?= ./scripts/resin
+export NPM_VERSION ?= 6.7.0
 S3_BUCKET = artifacts.ci.balena-cloud.com
 
 # This directory will be completely deleted by the `clean` rule
@@ -92,14 +93,12 @@ TARGET_ARCH ?= $(HOST_ARCH)
 # ---------------------------------------------------------------------
 # Electron
 # ---------------------------------------------------------------------
-
 electron-develop: | $(BUILD_TEMPORARY_DIRECTORY)
 	$(RESIN_SCRIPTS)/electron/install.sh \
 		-b $(shell pwd) \
 		-r $(TARGET_ARCH) \
 		-s $(PLATFORM) \
-		-n $(BUILD_TEMPORARY_DIRECTORY)/npm \
-		-a $(S3_BUCKET)
+		-m $(NPM_VERSION)
 
 electron-test:
 	$(RESIN_SCRIPTS)/electron/test.sh \
@@ -119,32 +118,6 @@ electron-build: assets/dmg/background.tiff | $(BUILD_TEMPORARY_DIRECTORY)
 		-w $(BUILD_TEMPORARY_DIRECTORY)
 
 # ---------------------------------------------------------------------
-# CLI
-# ---------------------------------------------------------------------
-
-cli-develop: | $(BUILD_TEMPORARY_DIRECTORY)
-	$(RESIN_SCRIPTS)/node-cli/install.sh \
-		-b $(shell pwd) \
-		-r $(TARGET_ARCH) \
-		-s $(PLATFORM) \
-		-n $(BUILD_TEMPORARY_DIRECTORY)/npm \
-		-a $(S3_BUCKET)
-
-cli-test:
-	$(RESIN_SCRIPTS)/node-cli/test.sh \
-		-b $(shell pwd)
-
-cli-build: | $(BUILD_TEMPORARY_DIRECTORY)
-	$(RESIN_SCRIPTS)/electron/build.sh \
-		-b $(shell pwd) \
-		-r $(TARGET_ARCH) \
-		-s $(PLATFORM) \
-		-v production \
-		-n $(BUILD_TEMPORARY_DIRECTORY)/npm \
-		-w $(BUILD_TEMPORARY_DIRECTORY) \
-		-a $(S3_BUCKET)
-
-# ---------------------------------------------------------------------
 # Phony targets
 # ---------------------------------------------------------------------
 
@@ -159,23 +132,14 @@ TARGETS = \
 	lint-spell \
 	test-spectron \
 	test-gui \
-	test-sdk \
-	test-cli \
 	test \
 	sanity-checks \
 	clean \
 	distclean \
-	changelog \
 	webpack \
-	cli-develop \
-	cli-test \
-	cli-build \
 	electron-develop \
 	electron-test \
 	electron-build
-
-changelog:
-	versionist
 
 webpack:
 	./node_modules/.bin/webpack
@@ -183,10 +147,14 @@ webpack:
 .PHONY: $(TARGETS)
 
 sass:
+	npm rebuild node-sass
 	node-sass lib/gui/app/scss/main.scss > lib/gui/css/main.css
 
+lint-ts:
+	resin-lint --typescript lib
+
 lint-js:
-	eslint --ignore-pattern scripts/resin/**/*.js lib tests scripts bin versionist.conf.js webpack.config.js
+	eslint --ignore-pattern scripts/resin/**/*.js lib tests scripts bin webpack.config.js
 
 lint-sass:
 	sass-lint lib/gui/scss
@@ -202,11 +170,11 @@ lint-spell:
 		--dictionary - \
 		--dictionary dictionary.txt \
 		--skip *.svg *.gz,*.bz2,*.xz,*.zip,*.img,*.dmg,*.iso,*.rpi-sdcard,*.wic,.DS_Store,*.dtb,*.dtbo,*.dat,*.elf,*.bin,*.foo,xz-without-extension \
-		lib tests docs scripts Makefile *.md LICENSE
+		lib tests docs Makefile *.md LICENSE
 
-lint: lint-js lint-sass lint-cpp lint-html lint-spell
+lint: lint-ts lint-js lint-sass lint-cpp lint-html lint-spell
 
-MOCHA_OPTIONS=--recursive --reporter spec
+MOCHA_OPTIONS=--recursive --reporter spec --require ts-node/register
 
 # See https://github.com/electron/spectron/issues/127
 ETCHER_SPECTRON_ENTRYPOINT ?= $(shell node -e 'console.log(require("electron"))')
@@ -218,13 +186,7 @@ test-gui:
 
 test-sdk:
 	electron-mocha $(MOCHA_OPTIONS) \
-		tests/shared \
-		tests/image-stream
-
-test-cli:
-	mocha $(MOCHA_OPTIONS) \
-		tests/shared \
-		tests/image-stream
+		tests/shared
 
 test: test-gui test-sdk test-spectron
 

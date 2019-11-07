@@ -17,12 +17,16 @@
 'use strict'
 
 const _ = require('lodash')
-const webpack = require('webpack')
 const path = require('path')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 
 const commonConfig = {
+  mode: 'production',
+  optimization: {
+    // Minification breaks angular.
+    minimize: false
+  },
   target: 'electron-main',
   module: {
     rules: [
@@ -32,7 +36,11 @@ const commonConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ 'react', 'env', 'stage-0' ],
+            presets: [
+              '@babel/preset-react',
+              [ '@babel/preset-env', { targets: { electron: '3' } } ]
+            ],
+            plugins: [ '@babel/plugin-proposal-function-bind' ],
             cacheDirectory: true
           }
         }
@@ -43,18 +51,20 @@ const commonConfig = {
         use: {
           loader: 'html-loader'
         }
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    extensions: [ '.js', '.jsx', '.json' ]
+    extensions: [ '.js', '.jsx', '.json', '.ts', '.tsx' ]
   },
   plugins: [
     new SimpleProgressWebpackPlugin({
       format: process.env.WEBPACK_PROGRESS || 'verbose'
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
     })
   ]
 }
@@ -124,7 +134,7 @@ const etcherConfig = _.assign({
       // on the tree (for testing purposes) or inside a generated
       // bundle (for production purposes), by translating
       // relative require paths within the bundle.
-      if (/\/(sdk|shared)/i.test(request) || /package\.json$/.test(request)) {
+      if (/\/shared/i.test(request) || /package\.json$/.test(request)) {
         const output = path.join(__dirname, 'generated')
         const dirname = path.join(context, request)
         const relative = path.relative(output, dirname)

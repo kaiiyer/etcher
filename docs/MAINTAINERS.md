@@ -40,39 +40,6 @@ Releasing
   - Write a blog post about it, and / or
   - Write about it to the Etcher mailing list
 
-### Preparing a New Version
-
-- Create & hop onto a new release branch, i.e. `release-1.0.0`
-- Bump the version number in the `package.json`'s `version` property.
-- Bump the version number in the `npm-shrinkwrap.json`'s `version` property
-- Add a new entry to `CHANGELOG.md` by running `make changelog`
-- Manually revise the `CHANGELOG.md` versionist output
-- Update `screenshot.png` so it displays the latest version in the bottom
-right corner
-- Revise the `updates.semverRange` version in `package.json`
-- Commit the changes with the version number as the commit title, including the `v` prefix, to `master`. For example:
-
-**NOTE:** The version **MUST** be prefixed with a "v"
-
-```bash
-git commit -m "v1.0.0" # not 1.0.0
-```
-
-- Create an annotated tag for the new version. The commit title should equal the annotated tag name. For example:
-
-```bash
-git tag -a v1.0.0 -m "v1.0.0"
-```
-
-- Push the commit and the annotated tag.
-
-```bash
-git push
-git push --tags
-```
-
-- Open a pull request against `master` titled "Release v1.0.0"
-
 ### Generating binaries
 
 **Environment**
@@ -105,8 +72,6 @@ export ANALYTICS_MIXPANEL_TOKEN="xxxxxx"
 ./scripts/build/docker/run-command.sh -r x64 -s . -c "make electron-develop && make RELEASE_TYPE=production electron-installer-redhat"
 # Build AppImages
 ./scripts/build/docker/run-command.sh -r x64 -s . -c "make electron-develop && make RELEASE_TYPE=production electron-installer-appimage"
-# Build CLI
-./scripts/build/docker/run-command.sh -r x64 -s . -c "make electron-develop && make RELEASE_TYPE=production cli-installer-tar-gz"
 
 # x86
 
@@ -116,8 +81,6 @@ export ANALYTICS_MIXPANEL_TOKEN="xxxxxx"
 ./scripts/build/docker/run-command.sh -r x86 -s . -c "make electron-develop && make RELEASE_TYPE=production electron-installer-redhat"
 # Build AppImages
 ./scripts/build/docker/run-command.sh -r x86 -s . -c "make electron-develop && make RELEASE_TYPE=production electron-installer-appimage"
-# Build CLI
-./scripts/build/docker/run-command.sh -r x86 -s . -c "make electron-develop && make RELEASE_TYPE=production cli-installer-tar-gz"
 ```
 
 #### Mac OS
@@ -125,13 +88,9 @@ export ANALYTICS_MIXPANEL_TOKEN="xxxxxx"
 **ATTENTION:** For production releases you'll need the code-signing key,
 and set `CSC_NAME` to generate signed binaries on Mac OS.
 
-**NOTE:** The CLI is not code-signed for either at this time.
-
 ```bash
 make electron-develop
 
-# Build the CLI
-make RELEASE_TYPE=production cli-installer-tar-gz
 # Build the zip
 make RELEASE_TYPE=production electron-installer-app-zip
 # Build the dmg
@@ -144,14 +103,11 @@ make RELEASE_TYPE=production electron-installer-dmg
 and set `CSC_LINK`, and `CSC_KEY_PASSWORD` to generate signed binaries on Windows.
 
 **NOTE:**
-- The CLI is not code-signed for either at this time.
 - Keep in mind to also generate artifacts for x86, with `TARGET_ARCH=x86`.
 
 ```bash
 make electron-develop
 
-# Build the CLI
-make RELEASE_TYPE=production cli-installer-zip
 # Build the Portable version
 make RELEASE_TYPE=production electron-installer-portable
 # Build the Installer
